@@ -16,6 +16,12 @@ const data = [
 
 function App() {
   const [search, setSearch] = useState('');
+  const [items, setItems] = useState(data);
+
+  useEffect(() => {
+    setItems(data.filter(el => el.toLowerCase().includes(search.toLowerCase())))
+  }, [search]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -25,7 +31,7 @@ function App() {
         >
           Find course:
         </Search>
-        <List items={data}/>
+        <List items={items}/>
       </header>
     </div>
   );
